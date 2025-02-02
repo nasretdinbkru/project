@@ -19,25 +19,25 @@
 class IfDescr{
 public:
   //IfDescr(const IfDescr&) = delete;
-  IfDescr(const std::string_view ifname,
-          const std::string_view ipv4,
-          const std::string_view brd,
-          const uint8_t prefix,
-          const std::string_view mac_addr);
+  IfDescr(std::string_view ifname,
+          std::string_view ipv4,
+          std::string_view brd,
+          uint8_t prefix,
+          std::string_view mac_addr);
 
-  std::string ipv4() const;
-  std::string ifname() const;
-  std::string broasdcast() const;
-  uint8_t prefix() const;
+  [[nodiscard]] std::string ipv4() const;
+  [[nodiscard]] std::string ifname() const;
+  [[nodiscard]] std::string broasdcast() const;
+  [[nodiscard]] uint8_t prefix() const;
 
   std::string mac_aadr();
 
 private:
-  const std::string _if_name;
-  const std::string _ipv4;
-  const std::string _brd;
-  const uint8_t _prefix;
-  const std::string _mac_addr;
+  const std::string if_name_;
+  const std::string ipv4_;
+  const std::string brd_;
+  const uint8_t prefix_;
+  const std::string mac_addr_;
 
 };
 
@@ -58,10 +58,10 @@ private:
   std::list<IfDescr> _if_descr_list = {};
 
   size_t get_ip( int domain);
-  size_t get_msg(int fd, struct sockaddr_nl *sa, void *buf, size_t len);
-  uint32_t parse_nl_msg(void *buf, size_t len);
-  IfDescr parse_ifa_msg(struct ifaddrmsg *ifa, void *buf, size_t len);
-  char* ntop(int domain, void *buf);
+  size_t get_msg(int fd_, struct sockaddr_nl *sa_, void *buf_, size_t len_);
+  uint32_t parse_nl_msg(void *buf_, size_t len_);
+  IfDescr parse_ifa_msg(struct ifaddrmsg *ifa, void *buf_, size_t len_);
+  char* ntop(int domain, void *buf_);
 };
 
 

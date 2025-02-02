@@ -56,6 +56,9 @@ void MemInfoCollector::fillParams(std::string &param, const std::string& line) {
     param = line.substr(parampos, line.length());
 
 }
+//std::string MemInfoCollector::memTotal() {
+//  return memTotal;
+//}
 
 MemDescr::MemDescr(const std::string_view memTotal,
                    const std::string_view memFree,
@@ -63,30 +66,30 @@ MemDescr::MemDescr(const std::string_view memTotal,
                    const std::string_view swapTotal,
                    const std::string_view swapFree)
     :
-      _memTotal(memTotal),
-      _memFree(memFree),
-      _memAvailable(memAvailable),
-      _swapTolal(swapTotal),
-      _swapFree(swapFree)
+	memTotal_(memTotal),
+	memFree_(memFree),
+	memAvailable_(memAvailable),
+	swapTolal_(swapTotal),
+	swapFree_(swapFree)
 
 {}
 
 std::string MemDescr::memFree() const{
-    return _memFree;
+    return memFree_;
 }
 
 std::string MemDescr::memTotal() const{
-    return _memTotal;
+    return memTotal_;
 }
 
 std::string MemDescr::memAvailable() const{
-    return _memAvailable;
+    return memAvailable_;
 }
 
 std::string MemDescr::swapFree() const{
-    return _swapFree;
+    return swapFree_;
 }
 
 std::string MemDescr::swapTolal() const{
-    return _swapTolal;
+    return swapTolal_;
 }

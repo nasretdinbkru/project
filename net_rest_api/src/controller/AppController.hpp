@@ -10,7 +10,7 @@
 #include <string>
 #include <ifaddrs.h>
 #include <netinet/in.h>
-#include <string.h>
+#include <cstring>
 #include <arpa/inet.h>
 #include "NetIfInfoCollector.h"
 #include "MemInfoCollector.h"
@@ -28,7 +28,7 @@ public:
    * Constructor with object mapper.
    * @param apiContentMappers - mappers used to serialize/deserialize DTOs.
    */
-    AppController(OATPP_COMPONENT(std::shared_ptr<oatpp::web::mime::ContentMappers>, apiContentMappers))
+    explicit AppController(OATPP_COMPONENT(std::shared_ptr<oatpp::web::mime::ContentMappers>, apiContentMappers))
         : oatpp::web::server::api::ApiController(apiContentMappers)
     {}
 public:
@@ -70,7 +70,7 @@ public:
         void * tmpV6AddrPtr=nullptr;
         getifaddrs(&ifAddrStruct);
 
-        for (ifa = ifAddrStruct; ifa != NULL; ifa = ifa->ifa_next) {
+        for (ifa = ifAddrStruct; ifa != nullptr; ifa = ifa->ifa_next) {
             if (!ifa->ifa_addr) {
                 continue;
             }
@@ -87,21 +87,24 @@ public:
                 ifInfoList->push_back(if_info_dto);
             }
         }
-        if (ifAddrStruct!=NULL) freeifaddrs(ifAddrStruct);
+        if (ifAddrStruct!=nullptr) freeifaddrs(ifAddrStruct);
         return createDtoResponse(Status::CODE_200, ifInfoList);
     }
-//    ENDPOINT("GET", "/meminfo", meminfo){
-//        oatpp::Object<MemInfo> memInfo({});
-//
-//        MemDescr memDescr();
-//
-//        memInfo->memFree = memDescr.memFree();
-//        memInfo->memTotal = memDescr.memTotal();
-//        memInfo->memAvailable = memDescr.memAvailable();
-//        memInfo->swapTotal = memDescr.swapTolal();
-//        memInfo->swapFree = memDescr.swapFree();
-//        return createDtoResponse(Status::CODE_200, memInfo);
-//    }
+    ENDPOINT("GET", "/meminfo", meminfo){
+        oatpp::Object<MemInfo> memInfo({});
+
+		MemInfoCollector mem_info_collector({});
+		MemDescr memDescr(mem_info_collector.memTotal, mem_info_collector.memFree,
+						   mem_info_collector.memAvailable, mem_info_collector.swapTotal, mem_info_collector.swapTotal);
+
+		auto mem_info_dto = MemInfo::createShared();
+		mem_info_dto->memFree = memDescr.memTotal();
+		mem_info_dto->memTotal = memDescr.memTotal();
+		mem_info_dto->memAvailable = memDescr.memAvailable();
+		mem_info_dto->swapTotal = memDescr.swapTolal();
+		mem_info_dto->swapFree = memDescr.swapFree();
+        return createDtoResponse(Status::CODE_200, mem_info_dto);
+    }
 };
 
 #include OATPP_CODEGEN_END(ApiController) //<-- End Codegen
