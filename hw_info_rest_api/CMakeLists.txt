@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-set(project_name hw_info_rest_api) ## rename your project here
+set(project_name hw_info_rest_api) 
 
 project(${project_name})
 
@@ -23,7 +23,6 @@ find_package(oatpp 1.4.0 REQUIRED)
 
 target_link_libraries(${project_name}-lib
     PUBLIC oatpp::oatpp
-    PUBLIC oatpp::oatpp-test
     )
 
 target_include_directories(${project_name}-lib PUBLIC src)
