@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-set(project_name net_rest_api) ## rename your project here
+set(project_name hw_info_rest_api) ## rename your project here
 
 project(${project_name})
 
