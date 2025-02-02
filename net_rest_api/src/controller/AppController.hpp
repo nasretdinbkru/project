@@ -45,10 +45,6 @@ public:
 
     ENDPOINT("GET", "/ipv4", ipv4){
         oatpp::List<oatpp::Object<IPv4Info>> ifInfoList({});
-        struct ifaddrs * ifAddrStruct=nullptr;
-        struct ifaddrs * ifa=nullptr;
-        void * tmpV4AddrPtr=nullptr;
-        void* tmpNetMask = nullptr;
         InfoCollertor ic;
         for (auto ic_item: ic.ifDescrList()){
             auto if_info_dto = IPv4Info::createShared();
