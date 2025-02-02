@@ -9,9 +9,6 @@ class MemInfoCollector
 public:
     MemInfoCollector();
 
-//	std::string memTotal(){
-//	  return mem
-//	}
   std::string memTotal{};
   std::string memFree{};
   std::string memAvailable{};
@@ -24,7 +21,6 @@ public:
 
 class MemDescr{
  public:
-  //IfDescr(const IfDescr&) = delete;
   MemDescr(std::string_view mem_total,
 		   std::string_view memFree,
 		   std::string_view memAvailable,
@@ -34,7 +30,7 @@ class MemDescr{
   [[nodiscard]] std::string memTotal() const;
   [[nodiscard]] std::string memFree() const;
   [[nodiscard]] std::string memAvailable() const;
-  [[nodiscard]] std::string swapTolal() const;
+  [[nodiscard]] std::string swapTotal() const;
   [[nodiscard]] std::string swapFree() const;
 
 
@@ -43,7 +39,7 @@ class MemDescr{
   const std::string memTotal_;
   const std::string memFree_;
   const std::string memAvailable_;
-  const std::string swapTolal_;
+  const std::string swapTotal_;
   const std::string swapFree_;
 
 };

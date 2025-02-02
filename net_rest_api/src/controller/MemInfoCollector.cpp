@@ -69,7 +69,7 @@ MemDescr::MemDescr(const std::string_view memTotal,
 	memTotal_(memTotal),
 	memFree_(memFree),
 	memAvailable_(memAvailable),
-	swapTolal_(swapTotal),
+	swapTotal_(swapTotal),
 	swapFree_(swapFree)
 
 {}
@@ -90,6 +90,6 @@ std::string MemDescr::swapFree() const{
     return swapFree_;
 }
 
-std::string MemDescr::swapTolal() const{
-    return swapTolal_;
+std::string MemDescr::swapTotal() const{
+  return swapTotal_;
 }

@@ -101,7 +101,7 @@ public:
 		mem_info_dto->memFree = memDescr.memTotal();
 		mem_info_dto->memTotal = memDescr.memTotal();
 		mem_info_dto->memAvailable = memDescr.memAvailable();
-		mem_info_dto->swapTotal = memDescr.swapTolal();
+		mem_info_dto->swapTotal = memDescr.swapTotal();
 		mem_info_dto->swapFree = memDescr.swapFree();
         return createDtoResponse(Status::CODE_200, mem_info_dto);
     }
