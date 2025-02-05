@@ -1,5 +1,7 @@
-##Проектная работа
-<p>Легкий REST API сервер на базе фреймворка oatpp https://github.com/oatpp/oatpp
+## Проектная работа
+<p>Легкий REST API сервер на базе фреймворка oatpp https://github.com/oatpp/oatpp.
+</p>
+<p>
 Реализована выдача данных по GET-запросу на следующие endpoints:
 </p>
 
@@ -27,8 +29,8 @@
 ```json
 {
   "memTotal": "32557860 kB",
-  "memFree": "32557860 kB",
-  "memAvailable": "22820284 kB",
+  "memFree": "18537164 kB",
+  "memAvailable": "23143552 kB",
   "swapTotal": "999420 kB",
   "swapFree": "999420 kB"
 }
