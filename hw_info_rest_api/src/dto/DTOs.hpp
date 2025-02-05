@@ -55,6 +55,21 @@ class MemInfo: public oatpp::DTO{
     DTO_FIELD(String, swapFree);
 };
 
+
+class HddInfo: public oatpp::DTO {
+  DTO_INIT(HddInfo, DTO);
+  DTO_FIELD(String, deviceName);
+  DTO_FIELD(String, model);
+  DTO_FIELD(String, serial);
+  DTO_FIELD(String, diskSize);
+
+};
+
+class HddInfoList: public oatpp::DTO {
+  DTO_INIT(HddInfoList, DTO);
+  DTO_FIELD(Vector<Object<HddInfo>>, hddInfolist);
+};
+
 #include OATPP_CODEGEN_END(DTO)
 
 #endif /* DTOs_hpp */
