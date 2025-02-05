@@ -8,12 +8,15 @@
 #include <utility>
 
 class HddDescr {
+
  public:
+
+  HddDescr& operator=(const HddDescr&) = delete;
   HddDescr() = default;
-  HddDescr(std::string  device_name,
-		   std::string  model,
-		   std::string  serial,
-		   std::string  disk_size);
+  HddDescr(std::string device_name,
+		   std::string model,
+		   std::string serial,
+		   std::string disk_size);
   [[nodiscard]] std::string device_name() const;
   [[nodiscard]] std::string model() const;
   [[nodiscard]] std::string serial() const;
@@ -28,6 +31,7 @@ class HddDescr {
 
 class HddInfoCollector {
  public:
+  HddInfoCollector& operator=(const HddInfoCollector&) = delete;
   HddInfoCollector();
   static HddDescr collect_disk_info(struct udev_device* dev);
   std::vector<HddDescr> hdd_list();

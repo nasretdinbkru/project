@@ -4,23 +4,22 @@
 //
 
 
-class MemInfoCollector
-{
-public:
-    MemInfoCollector();
-
+class MemInfoCollector {
+ public:
+  MemInfoCollector();
+  MemInfoCollector& operator=(const MemInfoCollector&) = delete;
   std::string memTotal{};
   std::string memFree{};
   std::string memAvailable{};
   std::string swapTotal{};
  private:
   std::string swapFree{};
-    static void fillParams(std::string &param, const std::string& line);
+  static void fillParams(std::string& param, const std::string& line);
 };
 
-
-class MemDescr{
+class MemDescr {
  public:
+  MemDescr& operator=(const MemDescr&) = delete;
   MemDescr(std::string_view mem_total,
 		   std::string_view memFree,
 		   std::string_view memAvailable,
@@ -33,8 +32,6 @@ class MemDescr{
   [[nodiscard]] std::string swapTotal() const;
   [[nodiscard]] std::string swapFree() const;
 
-
-
  private:
   const std::string memTotal_;
   const std::string memFree_;
@@ -43,6 +40,5 @@ class MemDescr{
   const std::string swapFree_;
 
 };
-
 
 #endif // MEMINFOCOLLECTOR_H

@@ -1,6 +1,6 @@
 #include "NetIfInfoCollector.h"
 #include <sstream>
-InfoCollertor::InfoCollertor(){
+NetInfoCollertor::NetInfoCollertor(){
     // Create a socket with the AF_NETLINK domain
 
     fd = socket(AF_NETLINK, SOCK_RAW, NETLINK_ROUTE);
@@ -20,15 +20,15 @@ InfoCollertor::InfoCollertor(){
 
 }
 
-InfoCollertor::~InfoCollertor(){
+NetInfoCollertor::~NetInfoCollertor(){
     close(fd);
 }
 
-std::list<IfDescr> InfoCollertor::ifDescrList(){
+std::list<IfDescr> NetInfoCollertor::ifDescrList(){
     return this->_if_descr_list;
 }
 
-size_t InfoCollertor::get_ip(int domain){
+size_t NetInfoCollertor::get_ip(int domain){
 
     // assemble the message according to the netlink protocol
     std::fill(buf, buf+4096, 0);
@@ -52,7 +52,7 @@ size_t InfoCollertor::get_ip(int domain){
     return (r < 0) ? -1 : 0;
 }
 
-size_t InfoCollertor::get_msg(int fd_, sockaddr_nl *sa_, void *buf_, size_t len_)
+size_t NetInfoCollertor::get_msg(int fd_, sockaddr_nl *sa_, void *buf_, size_t len_)
 {
     struct iovec iov{};
     struct msghdr msg{};
@@ -68,7 +68,7 @@ size_t InfoCollertor::get_msg(int fd_, sockaddr_nl *sa_, void *buf_, size_t len_
     return recvmsg(fd_, &msg, 0);
 }
 
-uint32_t InfoCollertor::parse_nl_msg(void *buf_, size_t len_)
+uint32_t NetInfoCollertor::parse_nl_msg(void *buf_, size_t len_)
 {
     struct nlmsghdr *nl = nullptr;
 
@@ -90,7 +90,7 @@ uint32_t InfoCollertor::parse_nl_msg(void *buf_, size_t len_)
     return nl->nlmsg_type;
 }
 
-IfDescr InfoCollertor::parse_ifa_msg(ifaddrmsg *ifa, void *buf_, size_t len_){
+IfDescr NetInfoCollertor::parse_ifa_msg(ifaddrmsg *ifa, void *buf_, size_t len_){
     char ifname[IF_NAMESIZE];
     std::string_view address;
     std::string_view broadcast;
@@ -125,7 +125,7 @@ IfDescr InfoCollertor::parse_ifa_msg(ifaddrmsg *ifa, void *buf_, size_t len_){
     return {ifname_s, address, broadcast, prefix, mac_addr};
 }
 
-char *InfoCollertor::ntop(int domain, void *buf_)
+char *NetInfoCollertor::ntop(int domain, void *buf_)
 {
     /*
          * this function is not thread safe

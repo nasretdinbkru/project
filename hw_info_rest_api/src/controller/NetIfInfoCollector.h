@@ -42,12 +42,12 @@ private:
 };
 
 
-class InfoCollertor{
+class NetInfoCollertor{
 public:
-  InfoCollertor(const InfoCollertor&) = delete;
-  InfoCollertor& operator=(const InfoCollertor&) = delete;
-  InfoCollertor();
-  ~InfoCollertor();
+  NetInfoCollertor(const NetInfoCollertor&) = delete;
+  NetInfoCollertor& operator=(const NetInfoCollertor&) = delete;
+  NetInfoCollertor();
+  ~NetInfoCollertor();
   std::list<IfDescr> ifDescrList();
 private:
   const uint16_t BUFLEN = 4096;

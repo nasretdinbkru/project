@@ -46,7 +46,7 @@ public:
 
     ENDPOINT("GET", "/ipv4", ipv4){
         oatpp::List<oatpp::Object<IPv4Info>> ifInfoList({});
-        InfoCollertor ic;
+        NetInfoCollertor ic;
         for (auto ic_item: ic.ifDescrList()){
             auto if_info_dto = IPv4Info::createShared();
             if_info_dto->if_name = ic_item.ifname();
@@ -103,7 +103,7 @@ public:
         return createDtoResponse(Status::CODE_200, mem_info_dto);
     }
 
-  ENDPOINT("GET", "hddinfo", hddinfo){
+  ENDPOINT("GET", "/hddinfo", hddinfo){
 	  oatpp::List<oatpp::Object<HddInfo>> hdd_info_list_dto({});
 	  HddInfoCollector hdd_info_collector({});
 
