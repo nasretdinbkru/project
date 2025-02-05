@@ -10,10 +10,10 @@
 class HddDescr {
  public:
   HddDescr() = default;
-  HddDescr(const std::string& device_name,
-		   const std::string& model,
-		   const std::string& serial,
-		   const std::string& disk_size);
+  HddDescr(std::string  device_name,
+		   std::string  model,
+		   std::string  serial,
+		   std::string  disk_size);
   [[nodiscard]] std::string device_name() const;
   [[nodiscard]] std::string model() const;
   [[nodiscard]] std::string serial() const;

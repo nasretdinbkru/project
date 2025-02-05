@@ -14,6 +14,7 @@
 #include <arpa/inet.h>
 #include "NetIfInfoCollector.h"
 #include "MemInfoCollector.h"
+#include "HddInfoCollector.h"
 
 #include OATPP_CODEGEN_BEGIN(ApiController) //<-- Begin Codegen
 
@@ -101,6 +102,22 @@ public:
 		mem_info_dto->swapFree = memDescr.swapFree();
         return createDtoResponse(Status::CODE_200, mem_info_dto);
     }
+
+  ENDPOINT("GET", "hddinfo", hddinfo){
+	  oatpp::List<oatpp::Object<HddInfo>> hdd_info_list_dto({});
+	  HddInfoCollector hdd_info_collector({});
+
+
+	  for(const auto& hdd_info: hdd_info_collector.hdd_list()){
+		auto hdd_dto_item = HddInfo::createShared();
+		hdd_dto_item->deviceName = hdd_info.device_name();
+		hdd_dto_item->serial = hdd_info.serial();
+		hdd_dto_item->deviceName = hdd_info.device_name();
+		hdd_dto_item->diskSize = hdd_info.disk_size();
+		hdd_info_list_dto->push_back(hdd_dto_item);
+	  }
+	return createDtoResponse(Status::CODE_200, hdd_info_list_dto);
+	}
 };
 
 #include OATPP_CODEGEN_END(ApiController) //<-- End Codegen

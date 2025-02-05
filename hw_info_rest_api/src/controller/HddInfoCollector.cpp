@@ -5,6 +5,7 @@
 #include <libudev.h>
 #include <cstring>
 #include <cmath>
+#include <utility>
 #include <vector>
 #include "HddInfoCollector.h"
 
@@ -83,12 +84,15 @@
 //
 //  return 0;
 //}
-HddDescr::HddDescr(const std::string& device_name,
-				   const std::string& model,
-				   const std::string& serial,
-				   const std::string& disk_size) {
-
-}
+HddDescr::HddDescr(std::string  device_name,
+				   std::string  model,
+				   std::string  serial,
+				   std::string  disk_size)
+	:
+	device_name_(std::move(device_name)),
+	model_(std::move(model)),
+	serial_(std::move(serial)),
+	disk_size_(std::move(disk_size)) {}
 //std::string HddDescr::device_name() const {
 //  return device_name_;
 //}
@@ -102,11 +106,11 @@ std::string HddDescr::disk_size() const {
   return disk_size_;
 }
 
-HddInfoCollector::HddInfoCollector(){
+HddInfoCollector::HddInfoCollector() {
   struct udev* udev = udev_new();
   if (!udev) {
 	std::cerr << "Unable to create udev context" << std::endl;
-	throw ;
+	throw;
   }
 
   // Ищем все устройства с типом "disk"

@@ -22,6 +22,7 @@ add_library(${project_name}-lib
 ## link libs
 
 find_package(oatpp 1.4.0 REQUIRED)
+find_library(UDEV_LIB udev REQUIRED)
 
 target_link_libraries(${project_name}-lib
         PUBLIC oatpp::oatpp
@@ -33,7 +34,7 @@ target_include_directories(${project_name}-lib PUBLIC src)
 add_executable(${project_name}-exe
         src/App.cpp
 )
-target_link_libraries(${project_name}-exe ${project_name}-lib)
+target_link_libraries(${project_name}-exe ${project_name}-lib ${UDEV_LIB})
 add_dependencies(${project_name}-exe ${project_name}-lib)
 
 set_target_properties(${project_name}-lib ${project_name}-exe PROPERTIES
