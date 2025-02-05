@@ -112,7 +112,7 @@ public:
 		auto hdd_dto_item = HddInfo::createShared();
 		hdd_dto_item->deviceName = hdd_info.device_name();
 		hdd_dto_item->serial = hdd_info.serial();
-		hdd_dto_item->deviceName = hdd_info.device_name();
+		hdd_dto_item->model = hdd_info.model();
 		hdd_dto_item->diskSize = hdd_info.disk_size();
 		hdd_info_list_dto->push_back(hdd_dto_item);
 	  }
