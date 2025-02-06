@@ -70,6 +70,19 @@ class HddInfoList: public oatpp::DTO {
   DTO_FIELD(Vector<Object<HddInfo>>, hddInfolist);
 };
 
+class CpuInfo: public oatpp::DTO {
+  DTO_INIT(CpuInfo, DTO);
+  DTO_FIELD(String, model);
+  DTO_FIELD(String, coreid);
+  DTO_FIELD(String, frequency);
+  DTO_FIELD(String, vendor);
+};
+
+class CpuInfoList: public oatpp::DTO {
+  DTO_INIT(CpuInfoList, DTO);
+  DTO_FIELD(Vector<Object<CpuInfo>>, cpuInfolist);
+};
+
 #include OATPP_CODEGEN_END(DTO)
 
 #endif /* DTOs_hpp */

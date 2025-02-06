@@ -15,6 +15,7 @@
 #include "NetIfInfoCollector.h"
 #include "MemInfoCollector.h"
 #include "HddInfoCollector.h"
+#include "CpuInfoCollector.h"
 
 #include OATPP_CODEGEN_BEGIN(ApiController) //<-- Begin Codegen
 
@@ -95,7 +96,7 @@ public:
 						   mem_info_collector.memAvailable, mem_info_collector.swapTotal, mem_info_collector.swapTotal);
 
 		auto mem_info_dto = MemInfo::createShared();
-		mem_info_dto->memFree = memDescr.memTotal();
+		mem_info_dto->memFree = memDescr.memFree();
 		mem_info_dto->memTotal = memDescr.memTotal();
 		mem_info_dto->memAvailable = memDescr.memAvailable();
 		mem_info_dto->swapTotal = memDescr.swapTotal();
@@ -118,6 +119,22 @@ public:
 	  }
 	return createDtoResponse(Status::CODE_200, hdd_info_list_dto);
 	}
+
+  ENDPOINT("GET", "/cpuinfo", cpuinfo){
+	oatpp::List<oatpp::Object<CpuInfo>> cpu_info_list_dto({});
+	CpuInfoCollector cpu_info_collector({});
+
+
+	for(const auto& cpu_info: cpu_info_collector.cpu_list()){
+	  auto cpu_dto_item = CpuInfo::createShared();
+	  cpu_dto_item->vendor = cpu_info.vendor();
+	  cpu_dto_item->model = cpu_info.model();
+	  cpu_dto_item->coreid = cpu_info.core_id();
+	  cpu_dto_item->frequency = cpu_info.frequency();
+	  cpu_info_list_dto->push_back(cpu_dto_item);
+	}
+	return createDtoResponse(Status::CODE_200, cpu_info_list_dto);
+  }
 };
 
 #include OATPP_CODEGEN_END(ApiController) //<-- End Codegen

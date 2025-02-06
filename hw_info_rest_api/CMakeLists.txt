@@ -17,6 +17,8 @@ add_library(${project_name}-lib
         src/dto/DTOs.hpp
         src/controller/HddInfoCollector.h
         src/controller/HddInfoCollector.cpp
+        src/controller/CpuInfoCollector.cpp
+        src/controller/CpuInfoCollector.h
 )
 
 ## link libs
