@@ -53,3 +53,32 @@
   }
 ]
 ```
+**/cpuinfo**
+```json
+[
+  {
+    "model": " Intel(R) Core(TM) i5-2400 CPU @ 3.10GHz",
+    "coreid": " 0",
+    "frequency": " 2011.141",
+    "vendor": " GenuineIntel"
+  },
+  {
+    "model": " Intel(R) Core(TM) i5-2400 CPU @ 3.10GHz",
+    "coreid": " 1",
+    "frequency": " 2707.603",
+    "vendor": " GenuineIntel"
+  },
+  {
+    "model": " Intel(R) Core(TM) i5-2400 CPU @ 3.10GHz",
+    "coreid": " 2",
+    "frequency": " 2626.571",
+    "vendor": " GenuineIntel"
+  },
+  {
+    "model": " Intel(R) Core(TM) i5-2400 CPU @ 3.10GHz",
+    "coreid": " 3",
+    "frequency": " 2358.121",
+    "vendor": " GenuineIntel"
+  }
+]
+```
