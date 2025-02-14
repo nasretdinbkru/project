@@ -20,16 +20,13 @@
 #include OATPP_CODEGEN_BEGIN(ApiController) //<-- Begin Codegen
 
 /**
- * Sample Api Controller.
+ * Api Controller.
  */
 
 
 class AppController : public oatpp::web::server::api::ApiController {
 public:
-    /**
-   * Constructor with object mapper.
-   * @param apiContentMappers - mappers used to serialize/deserialize DTOs.
-   */
+
     explicit AppController(OATPP_COMPONENT(std::shared_ptr<oatpp::web::mime::ContentMappers>, apiContentMappers))
         : oatpp::web::server::api::ApiController(apiContentMappers)
     {}
