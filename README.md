@@ -95,35 +95,10 @@ ray@my-comp:~/target/project/hw_info_rest_api$
 4. Создать сборочные файлы:
 ```
 ray@my-comp:~/target/project/hw_info_rest_api/build$ cmake -S ../ -B .
--- The C compiler identification is GNU 10.2.1
--- The CXX compiler identification is GNU 10.2.1
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /usr/bin/c++ - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Configuring done (0.3s)
--- Generating done (0.0s)
--- Build files have been written to: /home/ray/target/project/hw_info_rest_api/build
 ```
 5. Собрать проект:
 ```
 ray@my-comp:~/target/project/hw_info_rest_api/build$ cmake --build .
-[ 12%] Building CXX object CMakeFiles/hw_info_rest_api-lib.dir/src/controller/AppController.cpp.o
-[ 25%] Building CXX object CMakeFiles/hw_info_rest_api-lib.dir/src/controller/NetIfInfoCollector.cpp.o
-[ 37%] Building CXX object CMakeFiles/hw_info_rest_api-lib.dir/src/controller/MemInfoCollector.cpp.o
-[ 50%] Building CXX object CMakeFiles/hw_info_rest_api-lib.dir/src/controller/HddInfoCollector.cpp.o
-[ 62%] Building CXX object CMakeFiles/hw_info_rest_api-lib.dir/src/controller/CpuInfoCollector.cpp.o
-[ 75%] Linking CXX static library libhw_info_rest_api-lib.a
-[ 75%] Built target hw_info_rest_api-lib
-[ 87%] Building CXX object CMakeFiles/hw_info_rest_api-exe.dir/src/App.cpp.o
-[100%] Linking CXX executable hw_info_rest_api-exe
-[100%] Built target hw_info_rest_api-exe
 ```
 6. Запустить исполняемый файл сервиса:
 ```
