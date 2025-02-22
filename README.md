@@ -73,7 +73,7 @@
 ## Сборка 
 1. Клонировать проект:
 ```
-ray@my-comp:~/target$ git clone https://github.com/nasretdinbkru/project.git
+root@debian:~/$ git clone https://github.com/nasretdinbkru/project.git
 Клонирование в «project»…
 remote: Enumerating objects: 135, done.
 remote: Counting objects: 100% (135/135), done.
@@ -84,30 +84,34 @@ remote: Total 135 (delta 62), reused 103 (delta 38), pack-reused 0 (from 0)
 ```
 2. Перейти в каталог с файлами исходных кодов:
 ```
-ray@my-comp:~/target$ cd project/hw_info_rest_api/
-ray@my-comp:~/target/project/hw_info_rest_api$
+root@debian:~/$ cd project/hw_info_rest_api/
+root@debian:~/project/hw_info_rest_api$
 ```
-3. Создать каталог для сборки и перейти в него:
+3.Установить библиотеку oatpp:
 ```
-ray@my-comp:~/target$ cd project/hw_info_rest_api/
-ray@my-comp:~/target/project/hw_info_rest_api$
+root@debian:~/project/hw_info_rest_api# utility/install-oatpp-modules.sh 
+```
+4. Создать каталог для сборки и перейти в него:
+```
+root@debian:~/$ mkdir build
+root@debian:~/project/hw_info_rest_api$ cd build
 ```
 4. Создать сборочные файлы:
 ```
-ray@my-comp:~/target/project/hw_info_rest_api/build$ cmake -S ../ -B .
+root@debian:~/project/hw_info_rest_api/build$ cmake -S ../ -B .
 ```
 5. Собрать проект:
 ```
-ray@my-comp:~/target/project/hw_info_rest_api/build$ cmake --build .
+root@debian:~/target/project/hw_info_rest_api/build$ cmake --build .
 ```
 6. Запустить исполняемый файл сервиса:
 ```
-ray@my-comp:~/target/project/hw_info_rest_api/build$ ./hw_info_rest_api-exe 
+root@debian:~/project/hw_info_rest_api/build$ ./hw_info_rest_api-exe 
  I |2025-02-14 21:21:53 1739557313789262| MyApp:Server running on port 8000
 ```
 7. В другом терминале выполнить http-запрос, например, на конечную точку /cpuinfo:
 ```
-ray@my-comp:~/$ wget -O - http://127.0.0.1:8000/cpuinfo
+root@debian:~/$ wget -O - http://127.0.0.1:8000/cpuinfo
 --2025-02-14 21:24:17--  http://127.0.0.1:8000/cpuinfo
 Подключение к 127.0.0.1:8000... соединение установлено.
 HTTP-запрос отправлен. Ожидание ответа… 200 OK
