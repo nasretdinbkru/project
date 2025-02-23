@@ -88,7 +88,7 @@ git clone --depth=1 https://github.com/oatpp/oatpp
 cd oatpp
 mkdir build
 cd build
-cmake -DOATPP_BUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=Release ..
+sudo cmake -DOATPP_BUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=Release ..
 make install -j 6
 cd ../../
 cd ../
