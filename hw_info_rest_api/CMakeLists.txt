@@ -18,6 +18,7 @@ add_library(${project_name}-lib
         src/controller/HddInfoCollector.cpp
         src/controller/CpuInfoCollector.cpp
         src/controller/CpuInfoCollector.h
+        src/controller/AppController.cpp
 )
 
 ## link libs
