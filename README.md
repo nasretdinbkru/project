@@ -96,7 +96,7 @@ rm -rf tmp
 ```
 4.Установить библиотеку libudev
 ```
-apt install libudev-dev
+sudo apt install libudev-dev
 ```
 5. Создать каталог для сборки и перейти в него:
 ```
