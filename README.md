@@ -70,6 +70,8 @@
   }
 ]
 ```
+## Платформы
+* Debian 12
 ## Сборка 
 
 1. Клонировать проект:
@@ -115,3 +117,40 @@ cmake --build .
 ```
 ./hw_info_rest_api-exe 
 ```
+## Пример использования
+wget -O - http://127.0.0.1:8000/cpuinfo
+--2025-02-14 21:24:17--  http://127.0.0.1:8000/cpuinfo
+Подключение к 127.0.0.1:8000... соединение установлено.
+HTTP-запрос отправлен. Ожидание ответа… 200 OK
+Длина: 586 [application/json]
+Сохранение в: «STDOUT»
+
+-                                       0%[                                                                       ]       0  --.-KB/s               [
+  {
+    "model": " Intel(R) Core(TM) i5-2400 CPU @ 3.10GHz",
+    "coreid": " 0",
+    "frequency": " 2333.116",
+    "vendor": " GenuineIntel"
+  },
+  {
+    "model": " Intel(R) Core(TM) i5-2400 CPU @ 3.10GHz",
+    "coreid": " 1",
+    "frequency": " 2153.606",
+    "vendor": " GenuineIntel"
+  },
+  {
+    "model": " Intel(R) Core(TM) i5-2400 CPU @ 3.10GHz",
+    "coreid": " 2",
+    "frequency": " 3082.776",
+    "vendor": " GenuineIntel"
+  },
+  {
+    "model": " Intel(R) Core(TM) i5-2400 CPU @ 3.10GHz",
+    "coreid": " 3",
+    "frequency": " 2499.064",
+    "vendor": " GenuineIntel"
+  }
+-                                     100%[======================================================================>]     586  --.-KB/s    за 0s      
+
+/2025-02-14 21:24:17 (86,9 MB/s) - записан в stdout [586/586]
+
