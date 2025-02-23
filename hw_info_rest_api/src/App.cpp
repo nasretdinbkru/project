@@ -1,5 +1,5 @@
-#include "./controller/AppController.hpp"
-#include "./AppComponent.hpp"
+#include "./controller/AppController.h"
+#include "./AppComponent.h"
 
 #include "oatpp/network/Server.hpp"
 

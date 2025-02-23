@@ -7,13 +7,13 @@ project(${project_name})
 set(CMAKE_CXX_STANDARD 17)
 
 add_library(${project_name}-lib
-        src/AppComponent.hpp
-        src/controller/AppController.hpp
+        src/AppComponent.h
+        src/controller/AppController.h
         src/controller/NetIfInfoCollector.h
         src/controller/NetIfInfoCollector.cpp
         src/controller/MemInfoCollector.h
         src/controller/MemInfoCollector.cpp
-        src/dto/DTOs.hpp
+        src/dto/DTOs.h
         src/controller/HddInfoCollector.h
         src/controller/HddInfoCollector.cpp
         src/controller/CpuInfoCollector.cpp
