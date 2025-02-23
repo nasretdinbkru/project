@@ -11,7 +11,7 @@ class HddDescr {
   HddDescr(std::string device_name,
 		   std::string model,
 		   std::string serial,
-		   std::string disk_size);
+		   std::string disk_size) noexcept;
   virtual ~HddDescr() = default;
   [[nodiscard]] std::string device_name() const;
   [[nodiscard]] std::string model() const;

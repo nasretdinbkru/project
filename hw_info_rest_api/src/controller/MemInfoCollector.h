@@ -33,7 +33,7 @@ class MemDescr {
 		   std::string_view memFree,
 		   std::string_view memAvailable,
 		   std::string_view swapTotal,
-		   std::string_view swapFree);
+		   std::string_view swapFree) noexcept;
   MemDescr() = delete;
   virtual ~MemDescr() =default;
   MemDescr& operator=(const MemDescr&) = delete;

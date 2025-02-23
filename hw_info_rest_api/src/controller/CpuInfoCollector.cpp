@@ -6,6 +6,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <exception>
 #include "CpuInfoCollector.h"
 
 std::vector<CpuDescr> CpuInfoCollector::cpu_list() {
@@ -13,7 +14,7 @@ std::vector<CpuDescr> CpuInfoCollector::cpu_list() {
 }
 
 CpuInfoCollector::CpuInfoCollector() {
-  //std::vector<CpuInfo> cpuInfos;
+
   std::ifstream cpuinfo("/proc/cpuinfo");
   std::string line;
   std::string model_name;
@@ -23,7 +24,8 @@ CpuInfoCollector::CpuInfoCollector() {
   CpuDescr cpu_descr(core_id,vendor,model_name,frequency);
 
   if (!cpuinfo.is_open()) {
-	// TODO Log here
+	std::cout << "Can not open /proc/cpuinfo" << std::endl;
+	throw std::runtime_error("Can not open /proc/cpuinfo");
   }
 
   while (getline(cpuinfo, line)) {
@@ -33,7 +35,7 @@ CpuInfoCollector::CpuInfoCollector() {
 	  if (!cpu_descr.model().empty()) {
 		cpuInfoList_.push_back(cpu_descr);
 	  }
-	  cpu_descr = CpuDescr("","","",""); // Новый процессор
+	  cpu_descr = CpuDescr("","","","");
 	}
 	if (line.find("model name") == 0) {
 	  cpu_descr.set_model(line.substr(line.find(':') + 1, line.length()));
@@ -50,7 +52,7 @@ CpuInfoCollector::CpuInfoCollector() {
 	}
   }
   if (!cpu_descr.model().empty()) {
-	cpuInfoList_.push_back(cpu_descr); // Добавляем последний процессор
+	cpuInfoList_.push_back(cpu_descr);
   }
 
 }
@@ -70,7 +72,7 @@ std::string CpuDescr::frequency() const {
 CpuDescr::CpuDescr(std::string_view core_id,
 				   std::string_view vendor,
 				   std::string_view model,
-				   std::string_view frequency)
+				   std::string_view frequency) noexcept
 	:
 	core_id_(core_id),
 	vendor_(vendor),

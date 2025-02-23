@@ -21,7 +21,7 @@ public:
           std::string_view ipv4,
           std::string_view brd,
           uint8_t prefix,
-          std::string_view mac_addr);
+          std::string_view mac_addr) noexcept;
   IfDescr() = delete;
   virtual ~IfDescr() = default;
   IfDescr& operator=(const IfDescr& other) = delete;

@@ -12,7 +12,7 @@
 HddDescr::HddDescr(std::string  device_name,
 				   std::string  model,
 				   std::string  serial,
-				   std::string  disk_size)
+				   std::string  disk_size) noexcept
 	:
 	device_name_(std::move(device_name)),
 	model_(std::move(model)),
@@ -33,7 +33,7 @@ HddInfoCollector::HddInfoCollector() {
   struct udev* udev = udev_new();
   if (!udev) {
 	std::cerr << "Unable to create udev context" << std::endl;
-	throw;
+	throw std::runtime_error("Unable to create udev context");
   }
 
   // Ищем все устройства с типом "disk"

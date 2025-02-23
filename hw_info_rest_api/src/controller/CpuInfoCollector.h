@@ -8,7 +8,7 @@ class CpuDescr {
   CpuDescr(std::string_view core_id,
 		   std::string_view vendor,
 		   std::string_view model,
-		   std::string_view frequency);
+		   std::string_view frequency) noexcept;
   CpuDescr() = delete;
 
   [[nodiscard]] std::string core_id() const;

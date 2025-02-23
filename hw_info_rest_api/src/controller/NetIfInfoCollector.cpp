@@ -6,6 +6,7 @@ NetInfoCollertor::NetInfoCollertor(){
     fd = socket(AF_NETLINK, SOCK_RAW, NETLINK_ROUTE);
     if (fd == -1){
         std::cout << "Can't open socket" << std::endl;
+	  throw std::runtime_error("Can't open socket");
     }
 
     sa.nl_family = AF_NETLINK;
@@ -134,7 +135,7 @@ char *NetInfoCollertor::ntop(int domain, void *buf_)
 }
 
 IfDescr::IfDescr(const std::string_view ifname, const std::string_view ipv4,
-				 const std::string_view brd, const uint8_t prefix, const std::string_view mac_addr)
+				 const std::string_view brd, const uint8_t prefix, const std::string_view mac_addr) noexcept
     :
 	if_name_(ifname),
 	ipv4_(ipv4),

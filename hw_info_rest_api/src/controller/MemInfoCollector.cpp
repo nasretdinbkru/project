@@ -10,7 +10,7 @@ MemInfoCollector::MemInfoCollector()
     std::ifstream memProcFile;
         memProcFile.open("/proc/meminfo");
         if (!memProcFile.is_open()) {
-          // TODO log error here
+		  throw std::runtime_error("Cannot open /proc/meminfo");
         }
         std::string line;
         while (std::getline(memProcFile, line)) {
@@ -76,7 +76,7 @@ MemDescr::MemDescr(const std::string_view memTotal,
                    const std::string_view memFree,
                    const std::string_view memAvailable,
                    const std::string_view swapTotal,
-                   const std::string_view swapFree)
+                   const std::string_view swapFree) noexcept
     :
 	memTotal_(memTotal),
 	memFree_(memFree),
