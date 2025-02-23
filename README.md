@@ -101,6 +101,7 @@ sudo apt install libudev-dev
 5. Создать каталог для сборки и перейти в него:
 ```
 mkdir build
+cd build
 
 ```
 6. Создать сборочные файлы:
