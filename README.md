@@ -90,8 +90,7 @@ mkdir build
 cd build
 cmake -DOATPP_BUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=Release ..
 sudo make install -j 6
-cd ../../
-cd ../
+cd ../../../
 rm -rf tmp
 ```
 4. Установить библиотеку libudev
