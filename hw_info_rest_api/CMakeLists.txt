@@ -8,7 +8,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_library(${project_name}-lib
         src/AppComponent.hpp
-        src/controller/AppController.cpp
         src/controller/AppController.hpp
         src/controller/NetIfInfoCollector.h
         src/controller/NetIfInfoCollector.cpp

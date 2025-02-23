@@ -1,9 +1,4 @@
-//
-// Created by ray on 05.02.2025.
-//
-
-#ifndef HW_INFO_REST_API_SRC_CONTROLLER_CPUINFOCOLLECTOR_H_
-#define HW_INFO_REST_API_SRC_CONTROLLER_CPUINFOCOLLECTOR_H_
+#pragma once
 #include <iostream>
 #include <vector>
 #include <string>
@@ -14,6 +9,7 @@ class CpuDescr {
 		   std::string_view vendor,
 		   std::string_view model,
 		   std::string_view frequency);
+  CpuDescr() = delete;
 
   [[nodiscard]] std::string core_id() const;
   [[nodiscard]] std::string vendor() const;
@@ -43,6 +39,3 @@ class CpuInfoCollector {
  private:
   std::vector<CpuDescr> cpuInfoList_{};
 };
-
-
-#endif //HW_INFO_REST_API_SRC_CONTROLLER_CPUINFOCOLLECTOR_H_

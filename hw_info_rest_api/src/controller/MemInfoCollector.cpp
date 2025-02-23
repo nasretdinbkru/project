@@ -16,31 +16,31 @@ MemInfoCollector::MemInfoCollector()
         while (std::getline(memProcFile, line)) {
           auto postotal = line.find("MemTotal");
           if (postotal!=std::string::npos) {
-            fillParams(memTotal, line);
+            fillParams(memTotal_, line);
             continue;
           }
 
           auto posfree = line.find("MemFree");
           if (posfree!=std::string::npos) {
-            fillParams(memFree, line);
+            fillParams(memFree_, line);
             continue;
           }
 
           auto posavail = line.find("MemAvailable");
           if (posavail!=std::string::npos) {
-            fillParams(memAvailable, line);
+            fillParams(memAvailable_, line);
             continue;
           }
 
           auto posswaptotal = line.find("SwapTotal");
           if (posswaptotal!=std::string::npos) {
-            fillParams(swapTotal, line);
+            fillParams(swapTotal_, line);
             continue;
           }
 
           auto posswapfree = line.find("SwapFree");
           if (posswapfree!=std::string::npos) {
-            fillParams(swapFree, line);
+            fillParams(swapFree_, line);
             continue;
           }
 
@@ -56,9 +56,21 @@ void MemInfoCollector::fillParams(std::string &param, const std::string& line) {
     param = line.substr(parampos, line.length());
 
 }
-//std::string MemInfoCollector::memTotal() {
-//  return memTotal;
-//}
+std::string MemInfoCollector::memTotal() const {
+  return memTotal_;
+}
+std::string MemInfoCollector::memFree() const {
+  return memFree_;
+}
+std::string MemInfoCollector::swapTotal() const {
+  return swapTotal_;
+}
+[[maybe_unused]] std::string MemInfoCollector::swapFree() const {
+  return swapFree_;
+}
+std::string MemInfoCollector::memAvailable() const {
+  return memAvailable_;
+}
 
 MemDescr::MemDescr(const std::string_view memTotal,
                    const std::string_view memFree,

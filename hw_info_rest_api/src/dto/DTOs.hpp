@@ -1,6 +1,4 @@
-#ifndef DTOs_hpp
-#define DTOs_hpp
-
+#pragma once
 #include "oatpp/macro/codegen.hpp"
 #include "oatpp/Types.hpp"
 
@@ -84,5 +82,3 @@ class CpuInfoList: public oatpp::DTO {
 };
 
 #include OATPP_CODEGEN_END(DTO)
-
-#endif /* DTOs_hpp */

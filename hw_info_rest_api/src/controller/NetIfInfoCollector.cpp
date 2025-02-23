@@ -34,7 +34,6 @@ size_t NetInfoCollertor::get_ip(int domain){
     std::fill(buf, buf+4096, 0);
     struct nlmsghdr *nl;
     nl = reinterpret_cast<struct nlmsghdr*>(buf);
-    //nl = (struct nlmsghdr*)buf;
     nl->nlmsg_len = NLMSG_LENGTH(sizeof(struct ifaddrmsg));
     nl->nlmsg_type = RTM_GETADDR;
     nl->nlmsg_flags = NLM_F_REQUEST | NLM_F_ROOT;
@@ -106,7 +105,6 @@ IfDescr NetInfoCollertor::parse_ifa_msg(ifaddrmsg *ifa, void *buf_, size_t len_)
         if (rta->rta_type == IFA_ADDRESS) {
             address = std::string(ntop(fa, RTA_DATA(rta)));
         }
-        //int* tmp = reinterpret_cast<int*>(rta->rta_type);
 
         if(rta->rta_type == IFLA_ADDRESS)
         {

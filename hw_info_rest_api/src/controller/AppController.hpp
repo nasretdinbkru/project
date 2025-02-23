@@ -1,5 +1,4 @@
-#ifndef MyController_hpp
-#define MyController_hpp
+#pragma once
 
 #include "dto/DTOs.hpp"
 
@@ -89,8 +88,8 @@ public:
         oatpp::Object<MemInfo> memInfo({});
 
 		MemInfoCollector mem_info_collector({});
-		MemDescr memDescr(mem_info_collector.memTotal, mem_info_collector.memFree,
-						   mem_info_collector.memAvailable, mem_info_collector.swapTotal, mem_info_collector.swapTotal);
+		MemDescr memDescr(mem_info_collector.memTotal(), mem_info_collector.memFree(),
+						   mem_info_collector.memAvailable(), mem_info_collector.swapTotal(), mem_info_collector.swapFree());
 
 		auto mem_info_dto = MemInfo::createShared();
 		mem_info_dto->memFree = memDescr.memFree();
@@ -136,4 +135,3 @@ public:
 
 #include OATPP_CODEGEN_END(ApiController) //<-- End Codegen
 
-#endif /* MyController_hpp */

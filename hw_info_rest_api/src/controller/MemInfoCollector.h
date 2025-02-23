@@ -1,30 +1,44 @@
-#ifndef MEMINFOCOLLECTOR_H
-#define MEMINFOCOLLECTOR_H
+#pragma once
 #include <string>
-//
 
 
 class MemInfoCollector {
  public:
   MemInfoCollector();
+  MemInfoCollector(const MemInfoCollector& other) = default;
   MemInfoCollector& operator=(const MemInfoCollector&) = delete;
-  std::string memTotal{};
-  std::string memFree{};
-  std::string memAvailable{};
-  std::string swapTotal{};
+  MemInfoCollector&& operator=(const MemInfoCollector&&) = delete;
+  virtual ~MemInfoCollector() = default;
+
+  [[nodiscard]] std::string memTotal() const;
+  [[nodiscard]] std::string memFree() const;
+  [[nodiscard]] std::string memAvailable() const;
+  [[nodiscard]] std::string swapTotal() const;
+  [[nodiscard]] std::string swapFree() const;
+
  private:
-  std::string swapFree{};
+  std::string memTotal_{};
+  std::string memFree_{};
+  std::string memAvailable_{};
+  std::string swapTotal_{};
+  std::string swapFree_{};
+
+
   static void fillParams(std::string& param, const std::string& line);
 };
 
 class MemDescr {
  public:
-  MemDescr& operator=(const MemDescr&) = delete;
   MemDescr(std::string_view mem_total,
 		   std::string_view memFree,
 		   std::string_view memAvailable,
 		   std::string_view swapTotal,
 		   std::string_view swapFree);
+  MemDescr() = delete;
+  virtual ~MemDescr() =default;
+  MemDescr& operator=(const MemDescr&) = delete;
+  MemDescr&& operator=(const MemDescr&&) = delete;
+  MemDescr(const MemDescr& other) = delete;
 
   [[nodiscard]] std::string memTotal() const;
   [[nodiscard]] std::string memFree() const;
@@ -40,5 +54,3 @@ class MemDescr {
   const std::string swapFree_;
 
 };
-
-#endif // MEMINFOCOLLECTOR_H

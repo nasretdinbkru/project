@@ -1,9 +1,4 @@
-//
-// Created by ray on 05.02.2025.
-//
-
-#ifndef HW_INFO_REST_API_SRC_CONTROLLER_HDDINFOCOLLECTOR_H_
-#define HW_INFO_REST_API_SRC_CONTROLLER_HDDINFOCOLLECTOR_H_
+#pragma once
 #include <iostream>
 #include <utility>
 
@@ -17,6 +12,7 @@ class HddDescr {
 		   std::string model,
 		   std::string serial,
 		   std::string disk_size);
+  virtual ~HddDescr() = default;
   [[nodiscard]] std::string device_name() const;
   [[nodiscard]] std::string model() const;
   [[nodiscard]] std::string serial() const;
@@ -31,13 +27,16 @@ class HddDescr {
 
 class HddInfoCollector {
  public:
-  HddInfoCollector& operator=(const HddInfoCollector&) = delete;
+
   HddInfoCollector();
+  HddInfoCollector(const HddInfoCollector& other) = default;
+  HddInfoCollector& operator=(const HddInfoCollector&) = delete;
+  HddInfoCollector&& operator=(const HddInfoCollector&&) = delete;
+  virtual ~HddInfoCollector() = default;
   static HddDescr collect_disk_info(struct udev_device* dev);
   std::vector<HddDescr> hdd_list();
+
  private:
   std::vector<HddDescr> hdd_list_;
 
 };
-
-#endif //HW_INFO_REST_API_SRC_CONTROLLER_HDDINFOCOLLECTOR_H_
