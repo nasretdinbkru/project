@@ -80,7 +80,7 @@ git clone https://github.com/nasretdinbkru/project.git
 ```
 cd project/hw_info_rest_api/
 ```
-3.Установить библиотеку oatpp:
+3. Установить библиотеку oatpp:
 ```
 mkdir tmp
 cd tmp
@@ -94,7 +94,7 @@ cd ../../
 cd ../
 rm -rf tmp
 ```
-4.Установить библиотеку libudev
+4. Установить библиотеку libudev
 ```
 sudo apt install libudev-dev
 ```
@@ -103,15 +103,15 @@ sudo apt install libudev-dev
 mkdir build
 
 ```
-5. Создать сборочные файлы:
+6. Создать сборочные файлы:
 ```
 cmake -S ../ -B .
 ```
-6. Собрать проект:
+7. Собрать проект:
 ```
 cmake --build .
 ```
-7. Запустить исполняемый файл сервиса:
+8. Запустить исполняемый файл сервиса:
 ```
 ./hw_info_rest_api-exe 
 ```
