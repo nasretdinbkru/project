@@ -1,0 +1,13 @@
+[Unit]
+Description=Simple REST API service.
+After=network.target
+Wants=network-online.target
+
+[Service]
+Restart=always
+Type=simple
+ExecStart=/opt/rest_api_srv/hw_info_rest_api-exe
+Environment=
+
+[Install]
+WantedBy=multi-user.target
