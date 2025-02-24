@@ -113,10 +113,34 @@ cmake -S ../ -B .
 ```
 cmake --build .
 ```
-8. Запустить исполняемый файл сервиса:
+## Создание сервиса
+8. Перейти в корневой каталог проекта
 ```
-./hw_info_rest_api-exe 
+cd ../
 ```
+9. Создать каталог для файла сервиса и скопировать в него файл сервиса
+```
+sudo mkdir /opt/rest_api_srv
+sudo cp build/hw_info_rest_api-exe /opt/rest_api_srv/
+```
+10. Скопировать сервисный файл в каталог /etc/systemd/system, добавить сервис в автозапуск и запустить сервис
+```
+sudo cp utility/simple_rest_api_srv.service /etc/systemd/system
+sudo systemctl enable simple_rest_api_srv.service
+sudo systemctl start simple_rest_api_srv.service
+```
+11. Для отключения сервиса выполнить
+```
+sudo systemctl stop simple_rest_api_srv.service
+sudo systemctl disable simple_rest_api_srv.service
+sudo systemctl daemon-reload
+```
+12. Или запустить исполняемый файл сервиса:
+```
+/opt/hw_info_rest_api-exe 
+```
+
+
 ## Пример использования
 ```
 wget -O - http://127.0.0.1:8000/cpuinfo
