@@ -48,8 +48,7 @@ MemInfoCollector::MemInfoCollector()
 }
 
 void MemInfoCollector::fillParams(std::string &param, const std::string& line) {
-    uint8_t colonPos = line.find(':');
-    const std::string tmp = line.substr(colonPos + 1, line.length());
+
     const std::vector<int> v{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     const auto valuepos = std::find_first_of(line.begin(), line.end(), v.begin(), v.end());
     const uint8_t parampos = line.find(*valuepos);

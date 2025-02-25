@@ -30,7 +30,6 @@ CpuInfoCollector::CpuInfoCollector() {
 
   while (getline(cpuinfo, line)) {
 	std::stringstream ss(line);
-	std::string key, value;
 	if (line.find("processor") == 0) {
 	  if (!cpu_descr.model().empty()) {
 		cpuInfoList_.push_back(cpu_descr);

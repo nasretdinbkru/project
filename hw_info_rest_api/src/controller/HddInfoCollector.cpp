@@ -9,10 +9,10 @@
 #include <vector>
 #include "HddInfoCollector.h"
 
-HddDescr::HddDescr(std::string  device_name,
-				   std::string  model,
-				   std::string  serial,
-				   std::string  disk_size) noexcept
+HddDescr::HddDescr(std::string device_name,
+				   std::string model,
+				   std::string serial,
+				   std::string disk_size) noexcept
 	:
 	device_name_(std::move(device_name)),
 	model_(std::move(model)),
@@ -71,9 +71,9 @@ HddDescr HddInfoCollector::collect_disk_info(struct udev_device* dev) {
   const char* devnode = udev_device_get_devnode(dev);
   const char* size_m = udev_device_get_sysattr_value(dev, "size");
   long long size_in_gb = 0;
-
+  char *eptr;
   if (size_m) {
-	long long size_in_blocks = std::atoll(size_m);
+	long long size_in_blocks = std::strtoll(size_m, &eptr, 10 );
 	size_in_gb = std::roundl(size_in_blocks / (2024.0 * 1024.0) / 1.886);
   }
 
